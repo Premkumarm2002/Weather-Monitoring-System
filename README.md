@@ -1,21 +1,24 @@
-README.md for Real-Time Weather Monitoring System
+# README.md for Real-Time Weather Monitoring System
 
-Project Title
-Real-Time Data Processing System for Weather Monitoring
+## Project Title
+**Real-Time Data Processing System for Weather Monitoring**
 
-Introduction
-This project implements a Real-Time Data Processing System that monitors weather conditions using the OpenWeatherMap API. It continuously retrieves weather data for major metros in India, calculates daily summaries, and provides alerts based on user-defined thresholds. The primary weather parameters tracked include temperature, perceived temperature, and main weather conditions.
+## Introduction
 
-Key Features
-Continuous retrieval of real-time weather data for Delhi, Mumbai, Chennai, Bangalore, Kolkata, and Hyderabad.
-Daily weather summaries including average, maximum, minimum temperatures, and dominant weather conditions.
-User-configurable alert thresholds for temperature conditions.
-Data storage in a MySQL database for further analysis and reporting.
+This project implements a **Real-Time Data Processing System** that monitors weather conditions using the **OpenWeatherMap API**. It continuously retrieves weather data for major metros in India, calculates daily summaries, and provides alerts based on user-defined thresholds. The primary weather parameters tracked include temperature, perceived temperature, and main weather conditions.
 
-Implementation Details
-Project Structure
+### Key Features
+- Continuous retrieval of real-time weather data for Delhi, Mumbai, Chennai, Bangalore, Kolkata, and Hyderabad.
+- Daily weather summaries including average, maximum, minimum temperatures, and dominant weather conditions.
+- User-configurable alert thresholds for temperature conditions.
+- Data storage in a MySQL database for further analysis and reporting.
 
-Weather-Monitoring-System/
+## Implementation Details
+
+### Project Structure
+
+```
+WeatherMonitoringSystem/
 ├── src/
 │   ├── main/
 │   │   ├── java/
@@ -26,7 +29,6 @@ Weather-Monitoring-System/
 │   │   │   │       │   ├── WeatherService.java
 │   │   │   │       │   ├── AlertService.java
 │   │   │   │       │   └── DatabaseService.java
-                            ScheduledWeatherfetcher.java
 │   │   │   │       ├── model/
 │   │   │   │       │   ├── WeatherData.java
 │   │   │   │       │   └── DailySummary.java
@@ -41,10 +43,13 @@ Weather-Monitoring-System/
 │                   └── WeatherAppTest.java
 ├── pom.xml
 └── README.md
+```
 
-Dependencies
-To set up and run the application, the following dependencies are required. Ensure you have the following in your pom.xml:
+### Dependencies
 
+To set up and run the application, the following dependencies are required. Ensure you have the following in your `pom.xml`:
+
+```xml
 <dependencies>
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -70,59 +75,66 @@ To set up and run the application, the following dependencies are required. Ensu
         <artifactId>jackson-databind</artifactId>
     </dependency>
 </dependencies>
+```
 
+### Build Instructions
 
-Build Instructions
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/Premkumarm2002/Weather-Monitoring-System.git
+   cd WeatherMonitoringSystem
+   ```
 
-Clone the Repository:
+2. **Set Up MySQL Database**:
+   - Create a MySQL database named `weather_db`.
 
-git clone https://github.com/Premkumarm2002/Weather-Monitoring-System.git
+3. **Configure Application Properties**:
+   - Update `src/main/resources/application.properties` with your MySQL credentials and OpenWeatherMap API key.
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/weather_db
+   spring.datasource.username=root
+   spring.datasource.password=yourpassword
+   spring.jpa.hibernate.ddl-auto=update
+   openweathermap.api.key=your_api_key
+   ```
 
-cd WeatherMonitoringSystem
+4. **Build the Application**:
+   - Use Maven to build the application:
+   ```bash
+   mvn clean install
+   ```
 
-Set Up MySQL Database:
+5. **Run the Application**:
+   - Start the application using:
+   ```bash
+   mvn spring-boot:run
+   ```
 
-Create a MySQL database named weather_db.
+## Design Choices
 
-Configure Application Properties:
+- **Modular Structure**: The project is organized into model, service, and repository packages, which promotes separation of concerns and maintainability.
+- **Database Integration**: Used Spring Data JPA for seamless database interactions, enabling easy data storage and retrieval.
+- **Weather Data Handling**: Implemented a structured approach to retrieve and process weather data from the OpenWeatherMap API using a RESTful client.
+- **Alert System**: Designed to allow user-configurable thresholds, providing flexibility based on user requirements.
 
-Update src/main/resources/application.properties with your MySQL credentials and OpenWeatherMap API key.
+## Testing
 
-spring.datasource.url=jdbc:mysql://localhost:3306/weather_db
-spring.datasource.username=root
-spring.datasource.password=yourpassword
-spring.jpa.hibernate.ddl-auto=update
-openweathermap.api.key=your_api_key
-
-Build the Application:
-
-Use Maven to build the application:
-
-mvn clean install
-
-Run the Application:
-
-Start the application using:
-
-mvn spring-boot:run
-
-Design Choices:
-Modular Structure: The project is organized into model, service, and repository packages, which promotes separation of concerns and maintainability.
-Database Integration: Used Spring Data JPA for seamless database interactions, enabling easy data storage and retrieval.
-Weather Data Handling: Implemented a structured approach to retrieve and process weather data from the OpenWeatherMap API using a RESTful client.
-Alert System: Designed to allow user-configurable thresholds, providing flexibility based on user requirements.
-
-Testing
 I implemented several tests to verify the functionality of the application, including:
 
-System Setup: Ensured the application connects successfully to the OpenWeatherMap API using a valid API key.
-Data Retrieval: Simulated API calls and validated that the weather data was retrieved and parsed correctly.
-Temperature Conversion: Verified the conversion of temperature values from Kelvin to Celsius.
-Daily Weather Summary: Confirmed that daily summaries were accurately calculated.
-Alerting Thresholds: Tested the alerting mechanism to ensure alerts were triggered correctly when thresholds were breached.
+1. **System Setup**: Ensured the application connects successfully to the OpenWeatherMap API using a valid API key.
+2. **Data Retrieval**: Simulated API calls and validated that the weather data was retrieved and parsed correctly.
+3. **Temperature Conversion**: Verified the conversion of temperature values from Kelvin to Celsius.
+4. **Daily Weather Summary**: Confirmed that daily summaries were accurately calculated.
+5. **Alerting Thresholds**: Tested the alerting mechanism to ensure alerts were triggered correctly when thresholds were breached.
 
-GitHub Repository Link
-GitHub Repository - https://github.com/Premkumarm2002/Weather-Monitoring-System.git
+## GitHub Repository Link
 
-Conclusion
+[GitHub Repository - Real-Time Weather Monitoring System](https://github.com/Premkumarm2002/Weather-Monitoring-System)
+
+## Conclusion
+
 I successfully developed a Real-Time Data Processing System for Weather Monitoring, fulfilling the project requirements. The application provides real-time updates, daily summaries, and alerts based on user-defined thresholds. Its modular structure and thorough testing ensure clarity, maintainability, and reliability.
+
+---
+
+Feel free to modify any parts of this README to suit your preferences or project specifics!
