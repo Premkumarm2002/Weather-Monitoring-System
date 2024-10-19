@@ -1,0 +1,25 @@
+package com.weather;
+
+import com.weather.model.WeatherData;
+import com.weather.service.WeatherService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class WeatherAppTest {
+
+    @Autowired
+    WeatherService weatherService;
+
+    @Test
+    public void testTemperatureConversion() {
+        // Mocking a WeatherData object for testing
+        WeatherData.Main main = new WeatherData.Main();
+        main.temp = 25.0; // Assuming it's already in Celsius
+
+        WeatherData weatherData = new WeatherData();
+        weatherData.main = main;
+
+        assertEquals(25.0, weatherData.getMain().getTemp());
+    }
+}

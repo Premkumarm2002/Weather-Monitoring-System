@@ -1,0 +1,41 @@
+package com.weather.service;
+
+import com.weather.model.WeatherData;
+import com.weather.repository.WeatherRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
+import java.util.List;
+
+@Service
+public class WeatherService {
+    @Autowired
+    private WeatherRepository weatherRepository;
+
+    @Value("${openweathermap.api.key}")
+    private String apiKey;
+
+    private final String[] cities = {"Delhi", "Mumbai", "Chennai", "Bangalore", "Kolkata", "Hyderabad"};
+
+    @Scheduled(fixedRate = 300000) // every 5 minutes
+    public void fetchWeatherData() {
+        RestTemplate restTemplate = new RestTemplate();
+        for (String city : cities) {
+            String url = String.format("https://api.openweathermap.org/data/2.5/weather?q=%s&appid=%s", city, apiKey);
+            WeatherApiResponse response = restTemplate.getForObject(url, WeatherApiResponse.class);
+            if (response != null) {
+                double tempCelsius = response.getMain().getTemp() - 273.15; // Convert Kelvin to Celsius
+                WeatherData data = new WeatherData();
+                data.setCity(city);
+                data.setTemperature(tempCelsius);
+                data.setMainCondition(response.getWeather()[0].getMain());
+                data.setTimestamp(response.getDt());
+                weatherRepository.save(data);
+            }
+        }
+    }
+}

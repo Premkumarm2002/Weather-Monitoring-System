@@ -1,0 +1,60 @@
+package com.weather.service;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class WeatherApiResponse {
+    private Main main;
+    private Weather[] weather;
+    private long dt; // Include the dt field
+
+    // Getters and Setters
+    public Main getMain() {
+        return main;
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    public Weather[] getWeather() {
+        return weather;
+    }
+
+    public void setWeather(Weather[] weather) {
+        this.weather = weather;
+    }
+
+    public long getDt() {
+        return dt; // Add this getter for dt
+    }
+
+    public void setDt(long dt) {
+        this.dt = dt; // Add this setter for dt
+    }
+
+    public static class Main {
+        private double temp;
+
+        // Getters and Setters
+        public double getTemp() {
+            return temp;
+        }
+
+        public void setTemp(double temp) {
+            this.temp = temp;
+        }
+    }
+
+    public static class Weather {
+        private String main;
+
+        // Getters and Setters
+        public String getMain() {
+            return main;
+        }
+
+        public void setMain(String main) {
+            this.main = main;
+        }
+    }
+}

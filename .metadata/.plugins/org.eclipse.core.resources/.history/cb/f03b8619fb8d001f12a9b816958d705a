@@ -1,0 +1,22 @@
+package com.weather;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.weather.model.DailySummary;
+import com.weather.repository.DailySummaryRepository;
+
+import jakarta.transaction.Transactional;
+
+
+@Service
+public class DatabaseService {
+    
+    @Autowired
+    private DailySummaryRepository dailySummaryRepository;
+
+    @Transactional
+    public void saveDailySummary(DailySummary dailySummary) {
+        dailySummaryRepository.save(dailySummary);
+    }
+}

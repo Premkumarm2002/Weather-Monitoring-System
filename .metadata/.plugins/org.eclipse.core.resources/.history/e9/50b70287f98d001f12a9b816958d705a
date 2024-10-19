@@ -1,0 +1,15 @@
+package com.weather;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class AlertService {
+
+    private double temperatureThreshold = 35.0;
+
+    public void checkForAlerts(WeatherData weatherData) {
+        if (weatherData.getMainCondition().getTemp() > temperatureThreshold) {
+            System.out.println("Alert! Temperature exceeded threshold: " + weatherData.getMainCondition().getTemp());
+        }
+    }
+}
