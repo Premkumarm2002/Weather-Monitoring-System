@@ -82,7 +82,7 @@ To set up and run the application, the following dependencies are required. Ensu
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/Premkumarm2002/Weather-Monitoring-System.git
-   cd WeatherMonitoringSystem
+   cd Weather-Monitoring-System
    ```
 
 2. **Set Up MySQL Database**:
@@ -135,6 +135,4 @@ I implemented several tests to verify the functionality of the application, incl
 
 I successfully developed a Real-Time Data Processing System for Weather Monitoring, fulfilling the project requirements. The application provides real-time updates, daily summaries, and alerts based on user-defined thresholds. Its modular structure and thorough testing ensure clarity, maintainability, and reliability.
 
----
 
-Feel free to modify any parts of this README to suit your preferences or project specifics!
