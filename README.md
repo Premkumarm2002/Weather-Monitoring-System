@@ -129,7 +129,7 @@ I implemented several tests to verify the functionality of the application, incl
 
 ## GitHub Repository Link
 
-[GitHub Repository - Real-Time Weather Monitoring System](https://github.com/Premkumarm2002/Weather-Monitoring-System)
+https://github.com/Premkumarm2002/Weather-Monitoring-System
 
 ## Conclusion
 
